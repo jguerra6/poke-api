@@ -1,0 +1,21 @@
+{
+	"name": "swe_interview",
+	"version": "1.0.0",
+	"description": "API to compare your pokemons",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"prestart": "npm install",
+		"start": "nodemon index.js",
+		"test": "NODE_OPTIONS=--experimental-vm-modules jest --watchAll"
+	},
+	"dependencies": {
+		"axios": "^0.27.2",
+		"dotenv": "^16.0.1",
+		"express": "^4.18.1"
+	},
+	"devDependencies": {
+		"jest": "^28.1.3",
+		"supertest": "^6.2.4"
+	}
+}
