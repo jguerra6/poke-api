@@ -3,7 +3,7 @@ FROM node:17-alpine3.12
 
 # Set work directory to /app
 WORKDIR /app
-ADD package*.json .
+ADD package*.json ./
 
 # declare the environment variable PORT=8080
 ENV PORT=8080
