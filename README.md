@@ -51,10 +51,22 @@ make up
 
 ## Testing
 
-To run all the tests invoke the npm command:
+- To run all the tests invoke the npm command:
 
 ```
 npm test
+```
+
+- To run the unit tests run:
+
+```
+npm run unit-test
+```
+
+- To run the integration tests run:
+
+```
+npm run integration-test
 ```
 
 ## End Points
