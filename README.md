@@ -53,8 +53,6 @@ make up
 
 Detailed API usage can be found [here](https://jguerra6.github.io/poke-api) but aslo this is a quick overview.
 
-**Note:** Due a CORS issue with Open API preview execute, on the API Documentation a [CORS wrapper](https://cors-anywhere-jorge.herokuapp.com) is used. Running the API from Postman or curl does not require that.
-
 ```
 /api/v1/pokemon-compare/damage/?pokemon1={{pokemon_1}}&pokemon2={{pokemon_2}}
 ```
