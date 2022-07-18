@@ -40,6 +40,22 @@ permissions:
   pull-requests: read # allows SonarCloud to decorate PRs with analysis results
 
 jobs:
+  unit_test:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install modules
+        run: npm prestart
+
+      - name: Test
+        run: npm run unit-test
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
@@ -52,3 +68,50 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  push_test_image:
+    name: Push Docker test image to Docker Hub
+    needs: [unit_test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        name: Build & push Docker image
+        with:
+          image: jguerra10/pokeapi
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+  integration_test:
+    name: Run integration tests
+    needs: [push_test_image]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install modules
+        run: npm prestart
+
+      - name: Test
+        run: npm run integration-test
+  push:
+    name: Push Docker image to Docker Hub
+    needs: [integration_test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        name: Build & push Docker image
+        with:
+          image: jguerra10/pokeapi
+          tags: latest
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
