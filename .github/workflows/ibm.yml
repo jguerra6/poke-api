@@ -112,5 +112,4 @@ jobs:
           kubectl apply -f deployment.yaml
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl expose deployment/$DEPLOYMENT_NAME --type=NodePort --port=8080 --name=$DEPLOYMENT_NAME --target-port=8080
-          kubectl apply -f service.yaml
           kubectl get services -o wide
