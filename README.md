@@ -1,6 +1,6 @@
 # Pokemon API
 
-Pokemon API is a NodeJS-based API that gives you useful information to compare Pokemons for battles and know their common moves. You can test our hosted version [here](http://169.51.200.120:31446).
+Pokemon API is a NodeJS-based API that gives you useful information to compare Pokemons for battles and know their common moves. You can test our hosted version [here](http://169.51.200.120:31159/api/v1/).
 
 ## Installation
 
@@ -49,29 +49,11 @@ Run the docker image:
 make up
 ```
 
-## Testing
-
-- To run all the tests invoke the npm command:
-
-```
-npm test
-```
-
-- To run the unit tests run:
-
-```
-npm run unit-test
-```
-
-- To run the integration tests run:
-
-```
-npm run integration-test
-```
-
 ## End Points
 
 Detailed API usage can be found [here](https://jguerra6.github.io/poke-api) but aslo this is a quick overview.
+
+**Note:** Due a CORS issue with Open API preview execute, on the API Documentation a [CORS wrapper](https://cors-anywhere-jorge.herokuapp.com) is used. Running the API from Postman or curl does not require that.
 
 ```
 /api/v1/pokemon-compare/damage/?pokemon1={{pokemon_1}}&pokemon2={{pokemon_2}}
@@ -105,3 +87,31 @@ Also, the following languages are supported:
 | English  |   en    |
 | Japanese |   ja    |
 | Chinese  | zh-Hans |
+
+## Testing
+
+- To run all the tests invoke the npm command:
+
+```
+npm test
+```
+
+- To run the unit tests run:
+
+```
+npm run unit-test
+```
+
+- To run the integration tests run:
+
+```
+npm run integration-test
+```
+
+## CI/CD
+
+1. Perform all the tests on the API.
+1. Run a SonarCloud report,
+1. Create a Docker Image.
+1. Upload the Docker Image to an IBM Registry (ICR).
+1. Deploy the image into a Kubernetes IBM Cluster.

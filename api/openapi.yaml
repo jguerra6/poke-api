@@ -4,7 +4,7 @@ info:
   description: API to compare your pokemons
   version: 1.5.0
 servers:
-  - url: https://cors-anywhere-jorge.herokuapp.com/http://169.51.200.120:31446/api/v1
+  - url: https://cors-anywhere-jorge.herokuapp.com/http://169.51.200.120:31159/api/v1
 tags:
   - name: Pokemon Compare
 paths:
