@@ -18,7 +18,7 @@ env:
   IMAGE_NAME: poke-api
   IKS_CLUSTER: cbadl00f0a0ufsaqopk0
   DEPLOYMENT_NAME: poke-api
-  PORT: 5001
+  PORT: 8080
 
 permissions:
   pull-requests: read # allows SonarCloud to decorate PRs with analysis results
@@ -40,19 +40,19 @@ jobs:
 
       - name: Test
         run: npm run unit-test
-  sonarcloud:
-    name: SonarCloud
-    needs: [unit_test]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  # sonarcloud:
+  #   name: SonarCloud
+  #   needs: [unit_test]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+  #     - name: SonarCloud Scan
+  #       uses: SonarSource/sonarcloud-github-action@master
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   integration_test:
     name: Run integration tests
     needs: [unit_test]
@@ -90,7 +90,7 @@ jobs:
       # Authenticate with IBM Cloud CLI
       - name: Authenticate with IBM Cloud CLI
         run: |
-          ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g default
+          ibmcloud login --apikey "${IBM_CLOUD_API_KEY}" -r "${IBM_CLOUD_REGION}" -g Default
           ibmcloud cr region-set "${IBM_CLOUD_REGION}"
           ibmcloud cr login
       # Build the Docker image
