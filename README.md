@@ -1,6 +1,6 @@
 # Pokemon API
 
-Pokemon API is a NodeJS-based API that gives you useful information to compare Pokemons for battles and know their common moves. You can test our hosted version here.
+Pokemon API is a NodeJS-based API that gives you useful information to compare Pokemons for battles and know their common moves. You can test our hosted version [here](http://169.51.200.120:31446).
 
 ## Installation
 

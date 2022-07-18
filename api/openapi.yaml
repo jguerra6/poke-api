@@ -1,10 +1,10 @@
 openapi: 3.0.0
 info:
-  title: swe inverview
+  title: Poke API by jguerra
   description: API to compare your pokemons
-  version: 1.0.0
+  version: 1.5.0
 servers:
-  - url: http://localhost:8080/api/v1
+  - url: https://cors-anywhere-jorge.herokuapp.com/http://169.51.200.120:31446/api/v1
 tags:
   - name: Pokemon Compare
 paths:
