@@ -11,8 +11,8 @@ export default class MovesService {
 			const promises = [];
 
 			// Get the details for all pokemons and add them to the promise array
-			for (let i = 0; i < pokemons.length; i++) {
-				promises.push(this.pokemonService.getPokemon(pokemons[i]));
+			for (const pokemon of pokemons) {
+				promises.push(this.pokemonService.getPokemon(pokemon));
 			}
 
 			// Wait for all promises to complete
@@ -21,10 +21,10 @@ export default class MovesService {
 			// Create a Map of all the moves and count their occurences
 			const allMoves = {};
 
-			for (let i = 0; i < response.length; i++) {
-				const moves = response[i].moves;
-				for (let j = 0; j < moves.length; j++) {
-					const move = moves[j].move;
+			for (const pokemon of response) {
+				const moves = pokemon.moves;
+				for (const moveObj of moves) {
+					const move = moveObj.move;
 					// Chceck if the move already exists on the map, if yes add 1 to the count, otherwise initialize it with 1
 					let count = allMoves[move.name] ? allMoves[move.name].count + 1 : 1;
 
@@ -47,8 +47,8 @@ export default class MovesService {
 					// Get the move name on the correct langauge
 					const promise = this.pokemonService
 						.translateMove(allMoves[move], lang)
-						.then((response) => {
-							commonMoves.push(response);
+						.then((moveName) => {
+							commonMoves.push(moveName);
 						})
 						.catch((err) => {
 							console.log(err);

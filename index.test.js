@@ -1,5 +1,5 @@
 import request from 'supertest';
-// import app from './index.js';
+
 import App from './app/index.js';
 
 import PokemonService from './pokemon/service/index.js';

@@ -47,9 +47,7 @@ export default class MockHelper {
 
 	mockPokemon = () => {
 		// Pokemons
-		for (let i = 0; i < testResources.pokemons.length; i++) {
-			const pokemonName = testResources.pokemons[i];
-
+		for (const pokemonName of testResources.pokemons) {
 			const pokemon = getPokemonFromJSON(pokemonName);
 
 			this.mock
@@ -60,9 +58,7 @@ export default class MockHelper {
 
 	mockTypes = () => {
 		// Types
-		for (let i = 0; i < testResources.types.length; i++) {
-			const typeId = testResources.types[i];
-
+		for (const typeId of testResources.types) {
 			const type = getTypeFromJSON(typeId);
 
 			this.mock.onGet(`${this.apiUrl}/type/${typeId}/`).reply(200, type);
@@ -71,9 +67,7 @@ export default class MockHelper {
 
 	mockMoves = () => {
 		// Moves
-		for (let i = 0; i < testResources.moves.length; i++) {
-			const moveId = testResources.moves[i];
-
+		for (const moveId of testResources.moves) {
 			const move = getMoveFromJSON(moveId);
 
 			this.mock.onGet(`${this.apiUrl}/move/${moveId}/`).reply(200, move);

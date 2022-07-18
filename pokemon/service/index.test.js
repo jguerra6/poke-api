@@ -15,6 +15,7 @@ describe('unit', () => {
 		mock = new MockHelper();
 
 		mock.mockPokemon();
+		mock.mockTypes();
 
 		pokemonService = new PokemonService({ httpRequestor: axios });
 	});
@@ -29,22 +30,20 @@ describe('unit', () => {
 	});
 
 	it('getDamageRelations() --> The damage Relation should be returned should be returned', async () => {
-		const pokemonTypes = {
-			types: [
-				{
-					type: {
-						name: 'electric',
-						url: 'https://pokeapi.co/api/v2/type/13/',
-					},
+		const pokemonTypes = [
+			{
+				type: {
+					name: 'electric',
+					url: 'https://pokeapi.co/api/v2/type/13/',
 				},
-				{
-					type: {
-						name: 'flying',
-						url: 'https://pokeapi.co/api/v2/type/3/',
-					},
+			},
+			{
+				type: {
+					name: 'flying',
+					url: 'https://pokeapi.co/api/v2/type/3/',
 				},
-			],
-		};
+			},
+		];
 		const response = await pokemonService.getDamageRelations(pokemonTypes);
 
 		expect(response).toBeInstanceOf(DamageRelations);

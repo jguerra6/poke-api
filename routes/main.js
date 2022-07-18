@@ -1,7 +1,7 @@
-import Route from "./entities/index.js";
+import Route from './entities/index.js';
 
 export default [
-	new Route("/health", "GET", [], (req, res) => {
-		res.status(200).json({ message: "OK" });
+	new Route('/health', 'GET', [], (_req, res) => {
+		res.status(200).json({ message: 'OK' });
 	}),
 ];

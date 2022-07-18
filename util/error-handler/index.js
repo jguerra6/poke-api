@@ -4,12 +4,12 @@ const logError = (err) => {
 	process.env.NODE_ENV !== 'test' && console.error(err);
 };
 
-const logErrorMiddleware = (err, req, res, next) => {
+const logErrorMiddleware = (err, _req, _res, next) => {
 	logError(err);
 	next(err);
 };
 
-const returnError = (err, req, res, next) => {
+const returnError = (err, _req, res, _next) => {
 	logError(err);
 	res.status(err.statusCode || 500).json({ message: err.message });
 };

@@ -30,8 +30,8 @@ export default class PokemonService {
 		const promises = [];
 
 		// Getting all the info for the main Pokemon types
-		for (let i = 0; i < types.length; i++) {
-			const type = types[i].type;
+		for (const typeObj of types) {
+			const type = typeObj.type;
 
 			const url = `${type.url}`;
 
@@ -45,8 +45,8 @@ export default class PokemonService {
 		const damageRelations = new DamageRelations();
 
 		// Merge specs for all the types in one single array per spec.
-		for (let i = 0; i < response.length; i++) {
-			const typeInfo = response[i].data.damage_relations;
+		for (const typeObj of response) {
+			const typeInfo = typeObj.data.damage_relations;
 
 			damageRelations.double_damage_to =
 				damageRelations.double_damage_to.concat(
@@ -84,8 +84,8 @@ export default class PokemonService {
 
 	// Loop the damage spec and check if it the rival has the listed type
 	parseDamages = (pokemon, arg, rivalTypes) => {
-		for (let i = 0; i < pokemon[`${arg}`].length; i++) {
-			const type = pokemon[`${arg}`][i].name;
+		for (const spec of pokemon[`${arg}`]) {
+			const type = spec.name;
 			if (rivalTypes[type]) {
 				return true;
 			}
@@ -148,8 +148,8 @@ export default class PokemonService {
 	compareDamage = async (pokemon1, pokemon2) => {
 		// Mapping the rival types
 		const rivalTypes = {};
-		for (let i = 0; i < pokemon2.types.length; i++) {
-			const type = pokemon2.types[i].type.name;
+		for (const typeObj of pokemon2.types) {
+			const type = typeObj.type.name;
 			rivalTypes[type] = 1;
 		}
 

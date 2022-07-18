@@ -21,7 +21,7 @@ export default class App {
 		subRouter.use('/', cleanroutes(routes));
 
 		//Undefined paths
-		this.app.use('*', (req, res) => {
+		this.app.use('*', (_req, _res) => {
 			throw new dependencies.HTTPErrorHandler({
 				statusCode: 404,
 				description: `Page not found.`,
@@ -32,7 +32,7 @@ export default class App {
 		this.app.use(dependencies.returnError);
 	}
 
-	listen = (port, actions) => {
+	listen = (port) => {
 		// Create the actual app and listen to the port
 		this.app.listen(port, () => {
 			console.log(`Server run at ${port}`);
