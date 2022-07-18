@@ -24,34 +24,36 @@ paths:
           description:
             The first pokemon to compare if it can receive or grant the double
             of damage.
-          required: false
+          required: true
           style: form
           explode: true
           schema:
             type: string
+          example: zapdos
         - name: pokemon2
           in: query
           description:
             The second pokemon to compare if it can receive or grant the
             double of damage.
-          required: false
+          required: true
           style: form
           explode: true
           schema:
             type: string
+          example: geodude
       responses:
-        "200":
+        '200':
           description: Returned the result of the comparision between two Pokemons.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Damage"
-        "400":
+                $ref: '#/components/schemas/Damage'
+        '400':
           description: Bad request
           content:
             application/problem+json:
               schema:
-                $ref: "#/components/schemas/Problem"
+                $ref: '#/components/schemas/Problem'
       x-swagger-router-controller: Damage
   /pokemon-compare/moves/:
     get:
@@ -67,7 +69,7 @@ paths:
         - name: pokemons
           in: query
           description: The list of Pokemons that will be compared to get their moves.
-          required: false
+          required: true
           style: form
           explode: false
           schema:
@@ -75,19 +77,52 @@ paths:
             type: array
             items:
               type: string
+              example: zapdos
+        - name: lang
+          in: query
+          description: |
+            The language code to return the list of shared moves. If not specified, English is used by default. 
+            List of supported languages:
+            | Language |  Code   |
+            | -------- | :-----: |
+            | Japanese | ja-Hrkt |
+            | Korean   |   ko    |
+            | Chinese  | zh-Hant |
+            | French   |   fr    |
+            | German   |   de    |
+            | Spanish  |   es    |
+            | Italian  |   it    |
+            | English  |   en    |
+            | Japanese |   ja    |
+            | Chinese  | zh-Hans |
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+          example: es
+        - name: limit
+          in: query
+          description: The limit of shared moves that will be returned. If not specified, 10 is default.
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+          example: 10
       responses:
-        "200":
+        '200':
           description: Returned the result of the common moves between 2 or more Pokemons.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Moves"
-        "400":
+                $ref: '#/components/schemas/Moves'
+        '400':
           description: Bad request
           content:
             application/problem+json:
               schema:
-                $ref: "#/components/schemas/Problem"
+                $ref: '#/components/schemas/Problem'
       x-swagger-router-controller: Moves
 components:
   schemas:
@@ -104,49 +139,42 @@ components:
           type: boolean
           example: true
       example:
-        deal_double_damage: true
-        receive_zero_damage: true
-        receive_half_damage: false
+        deal_double_damage: false
+        receive_zero_damage: false
+        receive_half_damage: true
     Moves:
       type: object
       properties:
+        pokemon:
+          type: array
+          example:
+            - zapdos
+            - pikachu
         moves:
           type: array
           example:
-            - thunderbolt
-            - thunder-punch
-            - thunder-shock
-      example:
-        moves:
-          - thunderbolt
-          - thunder-punch
-          - thunder-shock
+            - Onda Trueno
+            - Golpe Cabeza
+            - Rayo
+            - Tóxico
+            - Impactrueno
+            - Derribo
+            - Trueno
+            - Doble Filo
+            - Agilidad
+            - Furia
+        lang:
+          type: string
+          example: es
     Problem:
       type: object
       properties:
-        title:
+        message:
           type: string
           description: |
             A short, summary of the problem type. Written in english and readable
-            for engineers (usually not suited for non technical stakeholders and
-            not localized); example: Service Unavailable
-          example: Invalid Pokemon.
-        status:
-          maximum: 600
-          exclusiveMaximum: true
-          minimum: 100
-          type: integer
-          description: |
-            The HTTP status code generated by the origin server for this occurrence
-            of the problem.
-          format: int32
-          example: 503
-        detail:
-          type: string
-          description: |
-            A human readable explanation specific to this occurrence of the
-            problem.
-          example: The pokemon you entered does not exists.
+            for engineers.
+          example: Pokemon not found, please check your spelling..
   parameters:
     Pokemon1:
       name: pokemon1

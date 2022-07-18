@@ -1,12 +1,11 @@
-import Api400Error from '../../util/error-handler/400-error.js';
-import writeJson from '../../util/writer/http-writer.js';
+import DamageService from '../service/index.js';
 
-import damageService from '../service/index.js';
-
-// eslint-disable-next-line require-jsdoc
 export default class Damage {
-	// eslint-disable-next-line require-jsdoc
-	constructor() {}
+	constructor(dependencies) {
+		this.damageService = new DamageService(dependencies);
+		this.writeJson = dependencies.writeJson;
+		this.errorHandler = dependencies.HTTPErrorHandler;
+	}
 
 	compare = (req, res, next) => {
 		// Get the details from the query string
@@ -15,7 +14,10 @@ export default class Damage {
 
 		// Check that two pokemons are sent, if not return an error.
 		if (!pokemon1Name || !pokemon2Name) {
-			throw new Api400Error({ description: 'Please enter 2 pokemons.' });
+			throw new this.errorHandler({
+				statusCode: 400,
+				description: 'Please enter 2 pokemons.',
+			});
 		}
 
 		// Pokemon API only supports lowercase
@@ -24,9 +26,10 @@ export default class Damage {
 
 		// Invoke the damage service, if succesful return the results.
 		// Otherwise handle the error.
-		damageService(pokemon1Name, pokemon2Name)
+		this.damageService
+			.compare(pokemon1Name, pokemon2Name)
 			.then((response) => {
-				writeJson(res, response);
+				this.writeJson(res, response);
 			})
 			.catch((err) => {
 				next(err);

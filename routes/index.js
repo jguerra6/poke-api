@@ -1,10 +1,21 @@
 // Import all the routes
-import mainRoutes from "./main.js";
-import damageRoutes from "./damage.js";
-import movesRoutes from "./moves.js";
-import testRoutes from "./pokemon.js";
+import mainRoutes from './main.js';
+import DamageRouter from './damage.js';
+import MovesRouter from './moves.js';
 
-// Join all the routes
-const paths = [mainRoutes, damageRoutes, movesRoutes, testRoutes];
+export default class Router {
+	constructor(dependencies) {
+		const damageRouter = new DamageRouter(dependencies);
+		const movesRouter = new MovesRouter(dependencies);
+		// Join all the routes
+		this.paths = [
+			mainRoutes,
+			damageRouter.getRoutes(),
+			movesRouter.getRoutes(),
+		];
+	}
 
-export default paths;
+	getPaths = () => {
+		return this.paths;
+	};
+}

@@ -1,7 +1,7 @@
-import BaseError from "./base-error.js";
+import BaseError from './base-error.js';
 
 const logError = (err) => {
-	console.error(err);
+	process.env.NODE_ENV !== 'test' && console.error(err);
 };
 
 const logErrorMiddleware = (err, req, res, next) => {

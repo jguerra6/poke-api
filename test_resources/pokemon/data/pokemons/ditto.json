@@ -1,1 +1,19 @@
-{"name":"ditto","types":[{"type":{"name":"normal","url":"http://localhost:80/api/v1/type/1/"}}],"moves":[{"move":{"name":"transform","url":"http://localhost:80/api/v1/move/144/"}}]}
+{
+	"name": "ditto",
+	"types": [
+		{
+			"type": {
+				"name": "normal",
+				"url": "https://pokeapi.co/api/v2/type/1/"
+			}
+		}
+	],
+	"moves": [
+		{
+			"move": {
+				"name": "transform",
+				"url": "https://pokeapi.co/api/v2/move/144/"
+			}
+		}
+	]
+}

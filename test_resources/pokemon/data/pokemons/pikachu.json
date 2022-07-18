@@ -1,1 +1,73 @@
-{"name":"pikachu","types":[{"type":{"name":"electric","url":"http://localhost:80/api/v1/type/13/"}}],"moves":[{"move":{"name":"mega-punch","url":"http://localhost:80/api/v1/move/5/"}},{"move":{"name":"pay-day","url":"http://localhost:80/api/v1/move/6/"}},{"move":{"name":"thunder-punch","url":"http://localhost:80/api/v1/move/9/"}},{"move":{"name":"slam","url":"http://localhost:80/api/v1/move/21/"}},{"move":{"name":"double-kick","url":"http://localhost:80/api/v1/move/24/"}},{"move":{"name":"mega-kick","url":"http://localhost:80/api/v1/move/25/"}},{"move":{"name":"headbutt","url":"http://localhost:80/api/v1/move/29/"}},{"move":{"name":"body-slam","url":"http://localhost:80/api/v1/move/34/"}},{"move":{"name":"take-down","url":"http://localhost:80/api/v1/move/36/"}},{"move":{"name":"double-edge","url":"http://localhost:80/api/v1/move/38/"}}]}
+{
+	"name": "pikachu",
+	"types": [
+		{
+			"type": {
+				"name": "electric",
+				"url": "https://pokeapi.co/api/v2/type/13/"
+			}
+		}
+	],
+	"moves": [
+		{
+			"move": {
+				"name": "mega-punch",
+				"url": "https://pokeapi.co/api/v2/move/5/"
+			}
+		},
+		{
+			"move": {
+				"name": "pay-day",
+				"url": "https://pokeapi.co/api/v2/move/6/"
+			}
+		},
+		{
+			"move": {
+				"name": "thunder-punch",
+				"url": "https://pokeapi.co/api/v2/move/9/"
+			}
+		},
+		{
+			"move": {
+				"name": "slam",
+				"url": "https://pokeapi.co/api/v2/move/21/"
+			}
+		},
+		{
+			"move": {
+				"name": "double-kick",
+				"url": "https://pokeapi.co/api/v2/move/24/"
+			}
+		},
+		{
+			"move": {
+				"name": "mega-kick",
+				"url": "https://pokeapi.co/api/v2/move/25/"
+			}
+		},
+		{
+			"move": {
+				"name": "headbutt",
+				"url": "https://pokeapi.co/api/v2/move/29/"
+			}
+		},
+		{
+			"move": {
+				"name": "body-slam",
+				"url": "https://pokeapi.co/api/v2/move/34/"
+			}
+		},
+		{
+			"move": {
+				"name": "take-down",
+				"url": "https://pokeapi.co/api/v2/move/36/"
+			}
+		},
+		{
+			"move": {
+				"name": "double-edge",
+				"url": "https://pokeapi.co/api/v2/move/38/"
+			}
+		}
+	]
+}
