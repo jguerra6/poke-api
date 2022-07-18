@@ -14,7 +14,7 @@ env:
   IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
   IBM_CLOUD_REGION: us-south
   ICR_NAMESPACE: ${{ secrets.ICR_NAMESPACE }}
-  REGISTRY_HOSTNAME: us.icr.io
+  REGISTRY_HOSTNAME: icr.io
   IMAGE_NAME: poke-api
   IKS_CLUSTER: cbadl00f0a0ufsaqopk0
   DEPLOYMENT_NAME: poke-api
