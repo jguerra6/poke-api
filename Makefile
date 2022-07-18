@@ -23,4 +23,4 @@ image:
 
 .PHONY: up
 up:
-	@docker run --name poke-api -d -p $(PORT):8080 poke-api:latest
+	@docker run --name poke-api -d -p $(PORT):8080 $(IMAGE_NAME):latest
