@@ -96,7 +96,7 @@ jobs:
           node-version: 16
 
       - name: Install modules
-        run: npm prestart
+        run: npm run prestart
 
       - name: Test
         run: npm run integration-test
